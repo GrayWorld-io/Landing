@@ -8,6 +8,9 @@ const initialState = {
 }
 export const Contact = (props) => {
   const [{ name, email, message }, setState] = useState(initialState)
+  const EMAILJS_SERVICEID = process.env.REACT_APP_EMAILJS_SERVICEID;
+  const EMAILJS_TEMPLATEID = process.env.REACT_APP_EMAILJS_TEMPLATEID;
+  const EMAILJS_USERID = process.env.REACT_APP_EMAILJS_USERID;
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -20,14 +23,16 @@ export const Contact = (props) => {
     console.log(name, email, message)
     emailjs
       .sendForm(
-        'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID'
+        EMAILJS_SERVICEID, EMAILJS_TEMPLATEID, e.target, EMAILJS_USERID
       )
       .then(
         (result) => {
           console.log(result.text)
+          alert(result.text);
           clearState()
         },
         (error) => {
+          alert('error');
           console.log(error.text)
         }
       )
@@ -108,14 +113,6 @@ export const Contact = (props) => {
             <div className='contact-item'>
               <p>
                 <span>
-                  <i className='fa fa-phone'></i> Phone
-                </span>{' '}
-                {props.data ? props.data.phone : 'loading'}
-              </p>
-            </div>
-            <div className='contact-item'>
-              <p>
-                <span>
                   <i className='fa fa-envelope-o'></i> Email
                 </span>{' '}
                 {props.data ? props.data.email : 'loading'}
@@ -150,9 +147,9 @@ export const Contact = (props) => {
       <div id='footer'>
         <div className='container text-center'>
           <p>
-            &copy; 2020 Issaaf Kattan React Land Page Template. Design by{' '}
-            <a href='http://www.templatewire.com' rel='nofollow'>
-              TemplateWire
+            &copy; 2022 Gray World Landing. Design by{' '}
+            <a href='https://github.com/issaafalkattan/React-Landing-Page-Template' rel='nofollow'>
+            issaafalkattan
             </a>
           </p>
         </div>
