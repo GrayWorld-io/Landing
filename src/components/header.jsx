@@ -1,4 +1,8 @@
 export const Header = (props) => {
+  const josinDiscord = (e) => {
+    e.preventDefault()
+    alert('Will open with NFT Launchpad!')
+  }
   return (
     <header id='header'>
       <div className='intro'>
@@ -12,7 +16,7 @@ export const Header = (props) => {
                 </h1>
                 <p>{props.data ? props.data.paragraph : 'Loading'}</p>
                 <a
-                  href='#features'
+                  href='#' onClick={josinDiscord }
                   className='btn btn-custom btn-lg page-scroll'
                 >
                   Join Discord
